@@ -29,6 +29,11 @@ test: ## Run all tests in the project.
 		python -m pytest -v"
 	@echo "Done."
 
+run:
+	bash -c "source ./.venv/bin/activate && \
+		python ./main.py"
+	@echo "Done."
+
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

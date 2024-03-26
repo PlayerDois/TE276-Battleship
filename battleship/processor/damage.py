@@ -54,6 +54,15 @@ def get_damage(
     :param hazard: metadata of this hazard
     """
 
+    distancia_navio_perigo = get_distance(ship_position, hazard_position)
+
+    esta_seguro: bool = distancia_navio_perigo >= hazard.safe_dist
+
+    if esta_seguro:
+        return 0
+    else:
+        return (hazard.safe_dist - distancia_navio_perigo) / hazard.safe_dist
+
     # Compute distance from ship to hazard
     # <!!! INSERT YOUR CODE HERE !!!>
 
@@ -65,4 +74,22 @@ def get_damage(
 
     # Return the damage you computed
     # <!!! REPLACE THE LINE BELLOW WITH YOUR OWN !!!>
+
+    # 1. ship_position: a posição atual do navio;
+    # 2. hazard_position: a posição atual do hazard que está sendo considerado; e
+    # 3. hazard: metadados do hazard que está sendo analisado.
+    # Existem inúmeras funções matemáticas que poderiam modelar o dano pretendido. Para essa atividade,
+    # usemos:
+    # 1damage(d) = (0safe ,safe −d, if if safe d ≥ safe ≥ d ≥ 0 (1)
+    # onde safe é a distância de segurança a se manter do hazard (safe > 0) e d é a distância entre o navio e
+    # o hazard (d ≥ 0). Repare que o nosso problema é 2D (o componente Position armazena x e y, conforme
+    # sistema de coordenadas do Pygame), portanto a distância/métrica pode ser a induzida pela 2-norma nesse
+    # espaço vetorial, isto é, a distância euclideana convencional.
+    # Dicas:
+    # • A assinatura da função, a sua documentação e os comentários fornecidos são fundamentais para essa
+    # atividade.
+    # • Todas as informações necessários estão disponíveis no corpo da função, portanto não altere a sua
+    # assinatura.
+    # • Já existe uma função implementada que calcula essa distância entre duas Position
+
     return 0
